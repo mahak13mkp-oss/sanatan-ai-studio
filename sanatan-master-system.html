@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanatan AI Studio — Master Automation System</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  --saffron: #FF6B00;
+  --deep-saffron: #E55D00;
+  --gold: #D4A017;
+  --dark: #1A0A00;
+  --dark-card: #2A1508;
+  --cream: #FFF8F0;
+  --accent: #FF9A44;
+  --red: #C0392B;
+  --green: #27AE60;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.7;
+  padding: 0;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #1A0A00 0%, #3D1C04 40%, #6B2D00 100%);
+  color: white;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '🕉';
+  position: absolute;
+  font-size: 300px;
+  opacity: 0.05;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8em;
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 2px 20px rgba(212,160,23,0.3);
+  margin-bottom: 10px;
+}
+.hero h2 {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.4em;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.hero p {
+  font-size: 1.1em;
+  opacity: 0.85;
+  max-width: 700px;
+  margin: 10px auto 0;
+}
+
+/* NAV PILLS */
+.nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 20px 30px;
+  background: var(--dark-card);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-pills a {
+  background: rgba(255,154,68,0.15);
+  color: var(--accent);
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.85em;
+  font-weight: 600;
+  border: 1px solid rgba(255,154,68,0.3);
+  transition: all 0.2s;
+}
+.nav-pills a:hover {
+  background: var(--saffron);
+  color: white;
+}
+
+/* SECTIONS */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 30px;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--dark);
+  border-left: 5px solid var(--saffron);
+  padding-left: 15px;
+  margin-bottom: 25px;
+}
+.section-subtitle {
+  font-size: 1.1em;
+  color: var(--deep-saffron);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.card h3 {
+  font-size: 1.15em;
+  color: var(--dark);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card h3 .num {
+  background: var(--saffron);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+/* FLOW DIAGRAM */
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, #FFF8F0, #FFF0E0);
+  border-radius: 10px;
+  border-left: 4px solid var(--saffron);
+}
+.flow-step .step-num {
+  background: var(--saffron);
+  color: white;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1em;
+}
+.flow-step .step-content h4 {
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.flow-step .step-content p {
+  font-size: 0.92em;
+  color: #555;
+}
+.flow-arrow {
+  text-align: center;
+  font-size: 1.5em;
+  color: var(--saffron);
+  margin: 5px 0;
+}
+
+/* PROMPT BOX */
+.prompt-box {
+  background: #1A1A2E;
+  color: #E0E0E0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85em;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid #333;
+  position: relative;
+}
+.prompt-label {
+  background: var(--saffron);
+  color: white;
+  padding: 4px 14px;
+  border-radius: 6px 6px 0 0;
+  font-size: 0.8em;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: -1px;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  top: 1px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.92em;
+}
+th {
+  background: var(--dark);
+  color: var(--gold);
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+}
+td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+tr:nth-child(even) td {
+  background: #FFF8F0;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.badge-free { background: #D5F5E3; color: #1E8449; }
+.badge-pro { background: #FADBD8; color: #C0392B; }
+.badge-essential { background: #FDEBD0; color: #B9770E; }
+
+/* TOOLS GRID */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+.tool-card {
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid #eee;
+  transition: transform 0.2s;
+}
+.tool-card:hover { transform: translateY(-2px); }
+.tool-card h4 {
+  color: var(--saffron);
+  margin-bottom: 6px;
+  font-size: 1em;
+}
+.tool-card p {
+  font-size: 0.85em;
+  color: #666;
+}
+.tool-card .tag {
+  display: inline-block;
+  background: #FFF0E0;
+  color: var(--deep-saffron);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* WARNING */
+.warning {
+  background: #FDF2E9;
+  border-left: 4px solid var(--saffron);
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 15px 0;
+  font-size: 0.92em;
+}
+.warning strong { color: var(--red); }
+
+/* SUCCESS */
+.success {
+  background: #D5F5E3;
+  border-left: 4px solid var(--green);
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 15px 0;
+}
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin: 20px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--saffron), var(--gold));
+  border-radius: 3px;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--saffron);
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+}
+.timeline-item h4 { color: var(--dark); }
+.timeline-item .time { color: var(--saffron); font-weight: 600; font-size: 0.85em; }
+
+/* REPO LIST */
+.repo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+}
+.repo-item a {
+  color: var(--deep-saffron);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.repo-item a:hover { text-decoration: underline; }
+.repo-item .stars { color: #F39C12; font-size: 0.85em; }
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, var(--saffron), transparent);
+  margin: 30px 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--dark);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.9em;
+}
+
+@media print {
+  .nav-pills { display: none; }
+  .hero { padding: 30px 20px; }
+  body { font-size: 11pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>⚡ SANATAN AI STUDIO</h1>
+  <h2>स्वतन्त्र AI वीडियो ऑटोमेशन सिस्टम</h2>
+  <p>Complete Automated Pipeline — Trending Topic Research → Script → Cinematic Anime Video → YouTube Upload (15-20 min)</p>
+</div>
+
+<div class="nav-pills">
+  <a href="#pipeline">🔥 Pipeline Overview</a>
+  <a href="#research">🔍 Research</a>
+  <a href="#script">📜 Script</a>
+  <a href="#visual">🎬 Visual Production</a>
+  <a href="#prompts">🤖 Master Prompts</a>
+  <a href="#tools">🛠 Tools Stack</a>
+  <a href="#plugins">🔌 Plugins</a>
+  <a href="#repos">📦 GitHub Repos</a>
+  <a href="#schedule">📅 Weekly Schedule</a>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="pipeline">
+  <div class="section-title">PHASE 0 — Complete Automation Pipeline</div>
+  <p style="margin-bottom:20px; color:#666;">Yeh hai aapka end-to-end system flow. Har phase mein AI ka use hoga, manual kaam sirf quality check ke liye.</p>
+
+  <div class="flow-step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>🔥 Trending Topic Research</h4>
+      <p>YouTube API + Google Trends + Competitor Analysis → Top 5 trending Sanatan mythology topics identify karo. Real-time data se kaam chalega.</p>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>📜 Script Generation (Claude + Gemini)</h4>
+      <p>Selected topic pe 15-20 min ka engaging, research-based, twist wala script. Narrator-only format. Hindi + Sanskrit shabd mix.</p>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>🎭 Voice Over (ElevenLabs / Gemini)</h4>
+      <p>Script se professional Hindi voiceover generate. Cinematic, dramatic tone. Background ambience ke saath.</p>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h4>🎨 Visual Scene Generation (AI Image + Canva)</h4>
+      <p>Har script scene ke liye AI-generated anime/cinematic images (Gibbly style, 16:9). Canva mein assemble karo.</p>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <h4>🎬 Video Assembly (CapCut / DaVinci Resolve)</h4>
+      <p>Images + Voiceover + Background Music + SFX → 15-20 min cinematic anime video export. Ken Burns, zoom, pan effects.</p>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <h4>📈 YouTube SEO & Upload (Claude + TubeBuddy)</h4>
+      <p>Title, Description, Tags, Hashtags, Thumbnail — sab AI generate. SEO-optimized. Upload scheduling.</p>
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>⚡ Key Principle:</strong> Pura workflow "Batch Production" model pe chalega — ek baithak mein 2-3 videos ka material prepare karo. Quality pe compromise nahi.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="research">
+  <div class="section-title">PHASE 1 — Trending Topic Research System</div>
+  <div class="section-subtitle">3-Source Validation Method — Topic tabhi select hoga jab 3 mein se kam se kam 2 sources confirm karein</div>
+
+  <div class="card">
+    <h3><span class="num">A</span> Source 1 — YouTube Data Analytics</h3>
+    <p><strong>Tools:</strong> <a href="https://vidiq.com">VidIQ</a> (Free) + <a href="https://tubebuddy.com">TubeBuddy</a> (Free) + YouTube Search</p>
+    <p><strong>Process:</strong></p>
+    <table>
+      <tr><th>Step</th><th>Action</th><th>What to Look For</th></tr>
+      <tr><td>1</td><td>YouTube pe search: "Sanatan", "Mahabharat", "Ramayan", "Hindu mythology"</td><td>Sort by: View count → Last week</td></tr>
+      <tr><td>2</td><td>VidIQ "Trends" tab check karo</td><td>Rising topics, green arrow indicators</td></tr>
+      <tr><td>3</td><td>Competitor channels open karo</td><td>Top 5 channels ke recent videos ka view count compare</td></tr>
+      <tr><td>4</td><td>TubeBuddy "Keyword Explorer"</td><td>Search volume vs competition ratio</td></tr>
+    </table>
+    <p><strong>Top Competitor Channels to Track:</strong></p>
+    <p>Dharma Universe, Raj Shamani (mythology content), Mythical World, Sanskar TV, Katha, Mythri TV, Hanumaa, Bhakti One</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">B</span> Source 2 — Google Trends</h3>
+    <p><strong>Tool:</strong> <a href="https://trends.google.com">trends.google.com</a> (Free)</p>
+    <p><strong>Process:</strong></p>
+    <table>
+      <tr><th>Query</th><th>Region</th><th>Time Range</th><th>Category</th></tr>
+      <tr><td>"Mahabharat", "Krishna", "Shiva", "Ramayan"</td><td>India</td><td>Past 90 days</td><td>All</td></tr>
+      <tr><td>Seasonal: "Navratri", "Diwali", "Makar Sankranti"</td><td>India</td><td>Past 12 months</td><td>All</td></tr>
+    </table>
+    <p><strong>Green signal:</strong> Rising trend (↑ icon) + search volume 5000+ per week</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">C</span> Source 3 — AI-Assisted Research (Claude + Gemini)</h3>
+    <p><strong>Tool:</strong> Claude (you) + Gemini (web search enabled)</p>
+    <div class="prompt-label">RESEARCH MASTER PROMPT</div>
+    <div class="prompt-box">You are a Sanatan Mythology Content Researcher for a YouTube channel. Your job is to find 5 TRENDING topics right now that would make great 15-20 minute videos.
+
+For each topic, provide:
+1. TOPIC NAME — Specific, not generic (e.g., "Karna's Secret: What Really Happened at his Funeral Pyre" — NOT just "Karna")
+2. TREND INDICATOR — Why this is trending NOW (festival, TV show, movie, social media debate, historical anniversary)
+3. SEARCH VOLUME — Estimate based on your knowledge
+4. COMPETITOR GAP — What existing videos miss that you can cover differently
+5. UNIQUE ANGLE — The twist/hook that makes YOUR video different
+6. SCRIPT HOOK — One killer opening line that makes viewers stay
+
+Focus on topics that:
+- Have emotional depth (tragedy, mystery, hidden truth, unsung hero)
+- Are research-backed from original Sanskrit texts (Mahabharat, Ramayan, Puranas)
+- Have controversy or debate (people arguing in comments = engagement)
+- Are visually cinematic (battles, divine scenes, cosmic events)
+- Connect to modern life lessons
+
+Current date: [INSERT DATE]
+Language: Hindi script (Hinglish output)
+Output in TABLE format with all 6 fields.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="script">
+  <div class="section-title">PHASE 2 — Script Writing System</div>
+  <div class="section-subtitle">15-20 minute video = ~2500-3200 words. Narrator-only format. Cinematic storytelling.</div>
+
+  <div class="card">
+    <h3>Script Structure — 6-Act Formula</h3>
+    <table>
+      <tr><th>Act</th><th>Duration</th><th>Words</th><th>Content</th><th>Hook Level</th></tr>
+      <tr><td>1 — COLD OPEN</td><td>0:00-0:60</td><td>120-150</td><td>Shock statement / mystery / unanswered question. NO intro, NO "hello doston". Straight to the drama.</td><td>🔥🔥🔥</td></tr>
+      <tr><td>2 — SETUP</td><td>0:60-3:00</td><td>300-400</td><td>Context: characters, setting, time period. Visual world-building. Original text reference (e.g., "Mahabharat ke Udhyog Parv mein likha hai...")</td><td>🔥🔥</td></tr>
+      <tr><td>3 — RISING ACTION</td><td>3:00-8:00</td><td>600-800</td><td>Build tension. Multiple layers. Each layer reveals more. Use pauses for effect. "Lekin kya aap jante hain...?"</td><td>🔥🔥🔥</td></tr>
+      <tr><td>4 — TWIST / CLIMAX</td><td>8:00-12:00</td><td>600-800</td><td>The BIG reveal. The hidden truth. What nobody tells you. Most emotional/cinematic part.</td><td>🔥🔥🔥🔥</td></tr>
+      <tr><td>5 — MODERN CONNECTION</td><td>12:00-15:00</td><td>400-500</td><td>Connect to today's life. Why this story matters NOW. Life lesson, philosophical depth.</td><td>🔥🔥</td></tr>
+      <tr><td>6 — CLOSING + CTA</td><td>15:00-16:00</td><td>150-200</td><td>Powerful final line. Next video teaser. "Agli video mein hum baat karenge..." + Subscribe CTA</td><td>🔥🔥</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Script Writing Rules (Non-Negotiable)</h3>
+    <table>
+      <tr><td>✅</td><td><strong>Narrator-Only:</strong> Sirf narrator ki awaaz. Koi character dialogue NHI. Agar koi character bol raha hai, to narrator bole: "Krishna ne Arjun se kaha — '...'"</td></tr>
+      <tr><td>✅</td><td><strong>Research-Based:</strong> Har claim ke saath source reference (e.g., "Vishnu Puran, Chapter 18")</td></tr>
+      <tr><td>✅</td><td><strong>Hindi + Sanskrit Mix:</strong> Main language Hindi. Sanskrit shabd/jaap/strotras original form mein.</td></tr>
+      <tr><td>✅</td><td><strong>Twist Mandatory:</strong> Har video mein kam se kam 1 hidden truth ya unexpected angle.</td></tr>
+      <tr><td>✅</td><td><strong>Open Loops:</strong> "Aur uske baad hua... ye hum baad mein jaanenge" → viewer ko end tak pakde rakhna.</td></tr>
+      <tr><td>✅</td><td><strong>Emotional Pacing:</strong> Har 2-3 minute mein ek naya emotional beat — fear, wonder, sadness, anger, hope.</td></tr>
+      <tr><td>✅</td><td><strong>Scene Descriptions:</strong> Script mein [VISUAL:] tags for AI image generation prompts.</td></tr>
+      <tr><td>❌</td><td><strong>NO</strong> "Hello doston", "Channel ko subscribe karo" at start. Hook first, CTA at end.</td></tr>
+      <tr><td>❌</td><td><strong>NO</strong> factual mistakes about mythology. Cross-verify from Puranas.</td></tr>
+      <tr><td>❌</td><td><strong>NO</strong> comparing religions. Pure Sanatan storytelling.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="visual">
+  <div class="section-title">PHASE 3 — Visual Production (Anime Cinematic Style)</div>
+  <div class="section-subtitle">Gibbly-style anime visuals, 16:9 cinematic, 15-20 minute video</div>
+
+  <div class="card">
+    <h3>🎨 Visual Style Definition</h3>
+    <p><strong>Gibbly Anime Style</strong> = Japanese anime aesthetics + Indian mythology = Epic, dramatic, cel-shaded, with vibrant colors and dynamic lighting.</p>
+    <table>
+      <tr><th>Element</th><th>Specification</th></tr>
+      <tr><td>Aspect Ratio</td><td>16:9 (1920x1080)</td></tr>
+      <tr><td>Art Style</td><td>Anime cel-shaded, dramatic angles, cinematic lighting</td></tr>
+      <tr><td>Color Palette</td><td>Warm golds, deep reds, cosmic purples, divine blues</td></tr>
+      <tr><td>Character Design</td><td>Consistent Indian-anime hybrid — traditional clothing, anime proportions</td></tr>
+      <tr><td>Motion Style</td><td>Ken Burns (pan, zoom), parallax layers, subtle particle effects</td></tr>
+      <tr><td>Scene Count</td><td>~30-40 unique scenes for 15-20 min video</td></tr>
+      <tr><td>Scene Duration</td><td>10-25 seconds per scene (with transitions)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🤖 AI Image Generation Stack</h3>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <h4>Midjourney (Primary)</h4>
+        <p>Best anime style. Use --ar 16:9 --niji 6</p>
+        <span class="tag">Paid — $10/mo</span>
+      </div>
+      <div class="tool-card">
+        <h4>Leonardo.ai</h4>
+        <p>Great free tier. Anime model available</p>
+        <span class="tag">Free + Paid</span>
+      </div>
+      <div class="tool-card">
+        <h4>Stable Diffusion (ComfyUI)</h4>
+        <p>Self-hosted. Most control. Best for consistent characters</p>
+        <span class="tag">Free — GPU needed</span>
+      </div>
+      <div class="tool-card">
+        <h4>Canva AI (Magic Media)</h4>
+        <p>Quick generation + all editing in one place</p>
+        <span class="tag">Included in your tools</span>
+      </div>
+    </div>
+    <p><strong>Recommended Workflow:</strong> Midjourney/Leonardo for images → Canva for composition + text overlays → CapCut for final video assembly</p>
+  </div>
+
+  <div class="card">
+    <h3>🎬 Video Assembly Pipeline</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="time">Step 1 — Script-to-Scene Breakdown</span>
+        <p>Claude script se scene-by-scene breakdown banao. Har scene ka visual prompt + timing + voiceover text.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">Step 2 — AI Image Batch Generation</span>
+        <p>30-40 images generate karo (Midjourney/Leonardo/Canva). Consistent style prompt use karo.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">Step 3 — Voiceover Generation</span>
+        <p>ElevenLabs (best Hindi) ya Gemini voice. Script ko paragraphs mein split karke generate.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">Step 4 — CapCut Assembly</span>
+        <p>Images import → Voiceover sync → Ken Burns animation add → Background music → SFX → Color grade → Export 1080p</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">Step 5 — Quality Review</span>
+        <p>Full playback check: audio sync, visual flow, pacing, text overlays</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎵 Background Music & SFX</h3>
+    <table>
+      <tr><th>Source</th><th>Free/Paid</th><th>Best For</th></tr>
+      <tr><td>YouTube Audio Library</td><td>Free</td><td>Safe, no copyright issues</td></tr>
+      <tr><td> Epidemic Sound</td><td>Paid ($15/mo)</td><td>Professional quality</td></tr>
+      <tr><td>Suno AI / Udio</td><td>Freemium</td><td>Custom Indian classical generation</td></tr>
+      <tr><td>FreePD.com</td><td>Free</td><td>Atmospheric, cinematic scores</td></tr>
+    </table>
+    <p><strong>SFX Types needed:</strong> Thunder, wind, temple bells, battle sounds, divine chants, footstep echoes, arrow releases</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="prompts">
+  <div class="section-title">PHASE 4 — Master Prompts Library</div>
+  <div class="section-subtitle">Ye prompts copy karo aur Claude/Gemini mein use karo. Bracketed [ ] mein apni details bharo.</div>
+
+  <div class="card">
+    <h3>📜 SCRIPT MASTER PROMPT</h3>
+    <div class="prompt-label">CLAUDE — SCRIPT GENERATION</div>
+    <div class="prompt-box">ROLE: You are a master Sanatan Mythology storyteller, like a modern version of the ancient Kathavachaks. You narrate from original Sanskrit texts — Mahabharat, Ramayan, Puranas (Vishnu, Shiva, Bhagavata), Itihas. Your narration is cinematic, dramatic, emotionally gripping, and research-accurate.
+
+TASK: Write a 15-20 minute YouTube video script (~2800-3200 words) on the following topic:
+
+TOPIC: [INSERT YOUR SELECTED TOPIC]
+SOURCE TEXT: [e.g., Mahabharat, Karna Parv / Vishnu Puran Chapter X]
+UNIQUE ANGLE: [INSERT YOUR UNIQUE ANGLE FROM RESEARCH]
+
+FORMAT RULES:
+1. NARRATOR-ONLY FORMAT. No character dialogues. If a character speaks, the narrator says: "Krishn ne kaha — '...'" or "Bhishma Pitamah ne tarpa kar kaha — '...'"
+2. Include [VISUAL: description] tags every 2-3 sentences describing the scene for AI image generation
+3. Include [PAUSE] tags for dramatic pauses
+4. Include [MUSIC: mood] tags for background music direction
+5. Include [SFX: effect] tags for sound effects
+
+SCRIPT STRUCTURE:
+┌─ ACT 1: COLD OPEN (0:00-0:60) — Shock opening, NO "hello doston"
+├─ ACT 2: WORLD SETUP (0:60-3:00) — Context, characters, era
+├─ ACT 3: RISING TENSION (3:00-8:00) — Layers of story building
+├─ ACT 4: THE TWIST (8:00-12:00) — Hidden truth, revelation
+├─ ACT 5: MODERN MEANING (12:00-15:00) — Life connection, lesson
+└─ ACT 6: POWERFUL CLOSE (15:00-16:00) — Final line + teaser + CTA
+
+WRITING STYLE:
+- Language: Conversational Hindi (Hinglish in Devanagari or Latin script — I'll translate)
+- Tone: Epic, reverent, dramatic, mysterious
+- Pace: Slow build → Fast climax → Reflective end
+- Use Sanskrit terms in original form (e.g., "आशीर्वाद", "महाप्रस्थान", "स्वर्गारोहण")
+- Include open loops: "Lekin is kahani mein ek aur raaz chupa hai..."
+- Emotional hooks every 2-3 minutes
+- Each act should end with a micro-cliffhanger
+
+RESEARCH REQUIREMENTS:
+- Cite specific chapters/sections from original texts
+- Mention multiple interpretations where they exist
+- If a detail is debated among scholars, mention BOTH views
+- Do NOT invent mythology. Stick to canonical sources.
+
+OUTPUT: Give me the FULL SCRIPT with all tags. No summaries. No explanations. Just the ready-to-record script.
+</div>
+  </div>
+
+  <div class="card">
+    <h3>🎨 VISUAL PROMPT GENERATOR</h3>
+    <div class="prompt-label">CLAUDE — SCENE BREAKDOWN + IMAGE PROMPTS</div>
+    <div class="prompt-box">ROLE: You are a cinematic anime art director specializing in Indian mythology visuals.
+
+TASK: Take the following script and create a detailed scene breakdown with AI image generation prompts for each scene.
+
+SCRIPT: [PASTE YOUR SCRIPT HERE]
+
+FOR EACH SCENE, OUTPUT:
+┌─ Scene Number & Timestamp
+├─ Visual Description (what's happening)
+├─ AI Image Prompt (optimized for Midjourney/Leonardo — include style: "Japanese anime style, cel-shaded, dramatic cinematic lighting, epic composition, Indian mythology, 16:9, --niji 6 --ar 16:9")
+├─ Character Consistency Tags (describe each character in a consistent way so they look the same across scenes)
+├─ Camera Angle (wide, close-up, low angle, aerial, over-the-shoulder)
+├─ Mood/Lighting (golden hour, dark storm, divine glow, moonlit, fiery)
+└─ Ken Burns Direction (which way to pan/zoom)
+
+STYLE GUIDE:
+- Characters: Indian features with anime proportions, traditional clothing detailed
+- Gods/Deities: Divine glow effect, ethereal, larger than life
+- Battles: Dynamic angles, motion blur suggestion, dramatic poses
+- Landscape: Epic scale, vast horizons, Indian geography
+- Color grading: Warm golden hour → Cool blue night → Red/gold during battles → White/divine for spiritual moments
+
+OUTPUT AS TABLE.
+</div>
+  </div>
+
+  <div class="card">
+    <h3>📈 YOUTUBE SEO MASTER PROMPT</h3>
+    <div class="prompt-label">CLAUDE — TITLE, DESCRIPTION, TAGS, HASHTAGS</div>
+    <div class="prompt-box">ROLE: You are a YouTube SEO expert specializing in Indian mythology/spiritual content channels.
+
+TASK: Create complete YouTube SEO package for this video.
+
+TOPIC: [INSERT TOPIC]
+SCRIPT HOOK: [INSERT YOUR SCRIPT'S HOOK/MAIN ANGLE]
+TARGET AUDIENCE: Hindi-speaking India, ages 18-45, interested in Sanatan Dharma, mythology, history
+
+OUTPUT ALL OF THE FOLLOWING:
+
+1. TITLES (Give 5 options, ranked by click-through potential):
+   - Must include primary keyword naturally
+   - Must create curiosity gap
+   - Must be under 60 characters for full visibility
+   - Use power words: "Raaz", "Sacchai", "Anjani", "Kaisi Thi", "Kyun Hua"
+   - Example format: "Karna Ka Wo Raaz Jo Pandavas Bhi Nahi Jaante The 😱"
+
+2. THUMBNAIL CONCEPT (3 options):
+   - Describe visual composition
+   - Text overlay (3-5 words max, Hindi)
+   - Color scheme
+   - Emotional expression to use
+   - Example: "Karna's face half in shadow, divine bow glowing, text: 'सच कभी नहीं मालूम'"
+
+3. DESCRIPTION (Full, optimized):
+   - First 2 lines = HOOK (visible before "Show more")
+   - Paragraph 1: Story summary (no spoilers)
+   - Paragraph 2: Source reference (which text, which chapter)
+   - Paragraph 3: Modern relevance
+   - Timestamps/chapters (use your script's act structure)
+   - Links (subscribe, social media)
+   - Disclaimer: "Content based on Sanatan Shastras for educational purposes"
+
+4. TAGS (30-40 tags):
+   - Primary keywords (3-5)
+   - Secondary keywords (10-15)
+   - Long-tail keywords (10-15)
+   - Competitor channel names (5-8)
+
+5. HASHTAGS (15):
+   - Mix of broad (#SanatanDharma) and niche (#KarnaRaaz)
+   - Include trending festival hashtags if applicable
+
+6. CATEGORY & LANGUAGE:
+   - Category: Education / Entertainment
+   - Language: Hindi
+   - Made for kids: NO
+</div>
+  </div>
+
+  <div class="card">
+    <h3>🔍 COMPETITOR ANALYSIS PROMPT</h3>
+    <div class="prompt-label">GEMINI — COMPETITOR DEEP SCAN</div>
+    <div class="prompt-box">ROLE: You are a YouTube competitor analyst for Sanatan mythology channels.
+
+TASK: Analyze the top performing Sanatan mythology videos from the PAST 30 DAYS and identify patterns.
+
+SEARCH THESE CHANNELS/KEYWORDS:
+- "Dharma Universe", "Mythology", "Mahabharat", "Sanatan Dharma"
+- Channels getting 100K+ views on mythology content
+
+FOR EACH TOP VIDEO, ANALYZE:
+1. Title pattern (what words/phrases work?)
+2. Thumbnail style (color, text, composition)
+3. Video length (what duration gets most retention?)
+4. Opening hook type (shock? question? story?)
+5. Comments analysis (what are viewers asking for? what do they want MORE of?)
+6. Upload timing (when did they publish?)
+
+DELIVERABLE:
+- Top 10 performing videos this month with analysis
+- 5 content GAPS (topics nobody has covered well)
+- 3 title formulas that consistently get clicks
+- Best upload days and times based on data
+- Viewer sentiment analysis (what do they love? what do they hate?)
+
+OUTPUT IN TABLE FORMAT with actionable insights.
+</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="tools">
+  <div class="section-title">PHASE 5 — Complete Tools Stack</div>
+  <div class="section-subtitle">Aapke paas existing tools + recommended additions</div>
+
+  <div class="card">
+    <h3>✅ Existing Tools (Already Yours)</h3>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <h4>Canva Pro</h4>
+        <p>Thumbnail design, scene composition, text overlays, template creation</p>
+        <span class="tag">Visual Design</span>
+      </div>
+      <div class="tool-card">
+        <h4>Gemini (Google)</h4>
+        <p>Web research, competitor analysis, script assistance, image generation</p>
+        <span class="tag">AI Research</span>
+      </div>
+      <div class="tool-card">
+        <h4>Google Flow</h4>
+        <p>Workflow automation, connecting tools together</p>
+        <span class="tag">Automation</span>
+      </div>
+      <div class="tool-card">
+        <h4>Cloud Code</h4>
+        <p>Custom scripts, data processing, API integration</p>
+        <span class="tag">Development</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🆕 Recommended Additions (Must Have)</h3>
+    <table>
+      <tr><th>Tool</th><th>Purpose</th><th>Cost</th><th>Priority</th></tr>
+      <tr><td><strong>ElevenLabs</strong></td><td>Hindi voiceover generation (best quality AI voice)</td><td>$5/mo (Starter)</td><td><span class="badge badge-essential">ESSENTIAL</span></td></tr>
+      <tr><td><strong>Midjourney</strong></td><td>Anime-style AI image generation (--niji 6 mode)</td><td>$10/mo (Basic)</td><td><span class="badge badge-essential">ESSENTIAL</span></td></tr>
+      <tr><td><strong>CapCut Desktop</strong></td><td>Free video editor — best for this workflow</td><td>Free</td><td><span class="badge badge-essential">ESSENTIAL</span></td></tr>
+      <tr><td><strong>VidIQ</strong></td><td>YouTube SEO + trending research</td><td>Free tier available</td><td><span class="badge badge-essential">ESSENTIAL</span></td></tr>
+      <tr><td><strong>Leonardo.ai</strong></td><td>Free alternative to Midjourney</td><td>Free (150 credits/day)</td><td><span class="badge badge-free">FREE</span></td></tr>
+      <tr><td><strong>Tubebuddy</strong></td><td>Chrome extension — SEO + tags</td><td>Free tier</td><td><span class="badge badge-free">FREE</span></td></tr>
+      <tr><td><strong>Suno AI</strong></td><td>Custom Indian classical background music</td><td>Free tier</td><td><span class="badge badge-free">FREE</span></td></tr>
+      <tr><td><strong>Make.com (Integromat)</strong></td><td>Advanced automation between tools</td><td>$9/mo</td><td>Optional</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="plugins">
+  <div class="section-title">PHASE 6 — Claude Plugins & Skills</div>
+  <div class="section-subtitle">Claude mein install karo + custom skills banake upload karo</div>
+
+  <div class="card">
+    <h3>🔌 Claude Plugins to Install</h3>
+    <table>
+      <tr><th>Plugin</th><th>Purpose</th><th>Install</th></tr>
+      <tr><td><strong>Web Search</strong></td><td>Real-time research for trending topics and mythology verification</td><td>Built-in</td></tr>
+      <tr><td><strong>Google Drive</strong></td><td>Save scripts, assets, project files directly</td><td>Settings → Connectors</td></tr>
+      <tr><td><strong>YouTube (if available)</strong></td><td>Direct competitor video analysis</td><td>Check available plugins</td></tr>
+      <tr><td><strong>Google Trends Connector</strong></td><td>Fetch trend data directly in Claude</td><td>Check available plugins</td></tr>
+    </table>
+    <div class="warning">
+      <strong>Note:</strong> Claude ke built-in web search ko use karo mythology research ke liye. Agar koi specific plugin available nahi hai, to Gemini ko web research ke liye use karo aur results Claude mein paste karo.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Claude Custom Skills to Create</h3>
+    <p>Ye skills aapko Claude Cloud mein upload karne honge. Main alag PDF banakar dunga (Skills PDF).</p>
+    <table>
+      <tr><th>Skill Name</th><th>Description</th></tr>
+      <tr><td><strong>sanatan-topic-research</strong></td><td>Trending topic finder with 3-source validation</td></tr>
+      <tr><td><strong>sanatan-script-writer</strong></td><td>15-min cinematic script generator with narrator-only format</td></tr>
+      <tr><td><strong>sanatan-visual-director</strong></td><td>Scene breakdown + AI image prompts for anime style</td></tr>
+      <tr><td><strong>sanatan-youtube-seo</strong></td><td>Title, description, tags, hashtags generator</td></tr>
+      <tr><td><strong>sanatan-quality-check</strong></td><td>Mythology fact-checking + engagement scoring</td></tr>
+      <tr><td><strong>sanatan-competitor-scan</strong></td><td>Competitor channel analysis + gap identification</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="repos">
+  <div class="section-title">PHASE 7 — GitHub Repositories to Use</div>
+  <div class="section-subtitle">Open-source tools aur automation scripts jo aapke workflow ko speed up karenge</div>
+
+  <div class="card">
+    <h3>🤖 AI Content Generation</h3>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/huggingface/transformers" target="_blank">huggingface/transformers</a>
+        <span class="stars"> ⭐ 130K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Hindi text generation fine-tuning, mythology NLP models</p>
+      </div>
+    </div>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank">AUTOMATIC1111/stable-diffusion-webui</a>
+        <span class="stars"> ⭐ 140K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Local anime-style image generation. Best for consistent character design.</p>
+      </div>
+    </div>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/comfyanonymous/ComfyUI" target="_blank">comfyanonymous/ComfyUI</a>
+        <span class="stars"> ⭐ 50K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Advanced Stable Diffusion workflow. Character consistency with LoRA/ControlNet.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎬 Video Automation</h3>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/ai-tools/video-generation" target="_blank">Various Video AI Repos</a>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Search "faceless video generator" and "slide video automation" on GitHub</p>
+      </div>
+    </div>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/NVIDIA/NeMo" target="_blank">NVIDIA/NeMo</a>
+        <span class="stars"> ⭐ 7K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Voice cloning, TTS models. For Hindi voiceover if ElevenLabs alternative needed.</p>
+      </div>
+    </div>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/facebookresearch/llama" target="_blank">meta-llama/llama</a>
+        <span class="stars"> ⭐ 90K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Local LLM for script drafting. Hindi fine-tuned variants available.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📊 YouTube Automation & Research</h3>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/yanakd/get-youtube-statistics" target="_blank">YouTube Analytics Scrapers</a>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Competitor analysis automation scripts</p>
+      </div>
+    </div>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/search?q=youtube+automation+python" target="_blank">YouTube Automation Python Tools</a>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">Search this for batch upload, scheduling, SEO tools</p>
+      </div>
+    </div>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/googleapis/google-api-python-client" target="_blank">googleapis/google-api-python-client</a>
+        <span class="stars"> ⭐ 4K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">YouTube Data API, Google Trends API — build your own research tool</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎵 Music & Audio</h3>
+    <div class="repo-item">
+      <span>📦</span>
+      <div>
+        <a href="https://github.com/facebookresearch/audiocraft" target="_blank">facebookresearch/audiocraft</a>
+        <span class="stars"> ⭐ 5K+</span>
+        <p style="font-size:0.85em;color:#666;margin-top:4px;">MusicGen — AI music generation for background scores</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="schedule">
+  <div class="section-title">PHASE 8 — Weekly Production Schedule</div>
+  <div class="section-subtitle">Batch production model — 2 videos per week target</div>
+
+  <div class="card">
+    <table>
+      <tr><th>Day</th><th>Task</th><th>Time</th><th>Tools</th></tr>
+      <tr><td><strong>Sunday</strong></td><td>Trend Research + Topic Selection + Competitor Scan</td><td>2-3 hours</td><td>Gemini, VidIQ, Google Trends</td></tr>
+      <tr><td><strong>Monday</strong></td><td>Script Writing (Video 1) + Visual Prompts + SEO Package</td><td>2-3 hours</td><td>Claude, Gemini</td></tr>
+      <tr><td><strong>Tuesday</strong></td><td>Script Writing (Video 2) + Voiceover Generation (Both)</td><td>2-3 hours</td><td>Claude, ElevenLabs</td></tr>
+      <tr><td><strong>Wednesday</strong></td><td>AI Image Generation Batch (Video 1) — 30-40 scenes</td><td>3-4 hours</td><td>Midjourney/Leonardo/Canva</td></tr>
+      <tr><td><strong>Thursday</strong></td><td>AI Image Generation Batch (Video 2) — 30-40 scenes</td><td>3-4 hours</td><td>Midjourney/Leonardo/Canva</td></tr>
+      <tr><td><strong>Friday</strong></td><td>Video Assembly (Video 1) — CapCut editing</td><td>3-4 hours</td><td>CapCut, Canva</td></tr>
+      <tr><td><strong>Saturday</strong></td><td>Video Assembly (Video 2) + Quality Review + Schedule Upload</td><td>3-4 hours</td><td>CapCut, VidIQ</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>📅 Upload Schedule</h3>
+    <div class="success">
+      <strong>Best Upload Time for India:</strong> Wednesday 5:00 PM IST & Saturday 5:00 PM IST<br>
+      <strong>Why:</strong> Midweek (weekday audience) + Weekend (family viewing, higher retention)
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<div class="section" id="first-video">
+  <div class="section-title">PHASE 9 — Your First Video: Quick Start</div>
+  <div class="section-subtitle">Abhi shuru karne ke liye step-by-step action plan</div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="time">RIGHT NOW</span>
+        <h4>1. Topic Select Karo</h4>
+        <p>Claude mein Research Prompt paste karo. 5 topics aayenge. Best one pick karo. Suggestions: Karna's truth, Abhimanyu's ChakraVyuh, Draupadi's real power, Bhishma's secret vow, Duryodhana's good side.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">NEXT 2 HOURS</span>
+        <h4>2. Script Generate Karo</h4>
+        <p>Script Master Prompt mein topic daalo. Claude se full script lo. Ek baar padho, apne hisaab se edits karo.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">NEXT HOUR</span>
+        <h4>3. Scene Breakdown + SEO Package</h4>
+        <p>Visual Director Prompt + SEO Prompt dono run karo. 30-40 scene prompts ready. Title, description, tags ready.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">NEXT 2 HOURS</span>
+        <h4>4. Voiceover Generate</h4>
+        <p>ElevenLabs mein script paste karo. Hindi voice select karo (Matteo or Antonio for deep male voice). Generate + Download.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">NEXT 3-4 HOURS</span>
+        <h4>5. Images Generate + Canva Assemble</h4>
+        <p>Har scene ka prompt Midjourney/Leonardo/Canva mein daalo. Images generate + download.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="time">FINAL 3 HOURS</span>
+        <h4>6. CapCut mein Final Video</h4>
+        <p>Images + Voiceover + Music + Effects → 15-20 min cinematic video. Export. Upload.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>⚡ PRO TIP:</strong> Pehli video perfect nahi hogi — aur that's OK. Pehli video se seekho, dusri video behtar banegi, teesri video professional quality ki hogi. Consistency > Perfection.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Final Checklist</div>
+  <div class="card">
+    <table>
+      <tr><td>☐</td><td><strong>Research:</strong> 3-source validation done, topic locked</td></tr>
+      <tr><td>☐</td><td><strong>Script:</strong> 2800+ words, narrator-only, research-backed, with twist</td></tr>
+      <tr><td>☐</td><td><strong>Voiceover:</strong> Hindi AI voice generated, dramatic tone</td></tr>
+      <tr><td>☐</td><td><strong>Visuals:</strong> 30-40 AI anime images, 16:9, cinematic</td></tr>
+      <tr><td>☐</td><td><strong>Music:</strong> Background score + SFX added</td></tr>
+      <tr><td>☐</td><td><strong>Assembly:</strong> CapCut edit, Ken Burns animation, color grade</td></tr>
+      <tr><td>☐</td><td><strong>SEO:</strong> Title (5 options), Description, 30+ Tags, 15 Hashtags</td></tr>
+      <tr><td>☐</td><td><strong>Thumbnail:</strong> 3 concepts in Canva, eye-catching</td></tr>
+      <tr><td>☐</td><td><strong>Upload:</strong> Scheduled at 5 PM IST, Wednesday/Saturday</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p>⚡ Sanatan AI Studio — Master Automation System ⚡</p>
+  <p style="opacity:0.7;font-size:0.85em;margin-top:8px;">सत्यमेव जयते | Built with 🔥 for the power of Sanatan Dharma storytelling</p>
+</div>
+
+</body>
+</html>
